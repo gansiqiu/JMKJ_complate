@@ -3,7 +3,7 @@
     <div class="JMHeader">
         <div class="JMLogo">
           <router-link :to="{ name: 'home'}">
-              <img src="./assets/logo.png" alt="">
+              <img src="./assets/flower.png" alt="">
           </router-link>
         </div>
         <div class="JMNoticeBoard">
@@ -17,18 +17,20 @@
         </div>
         <div class="JMTopNav">
             <ul class="JMMenu">
-                <li class="JMItem" v-for="(item, index) in dataList" @click="headerChange(index)"><router-link :class="{JMLink:item.isJMLink, JMActive:item.isJMActive}" :to="item.dataPageName" replace>{{item.title}}</router-link></li>
+                <li class="JMItem" v-for="(item, index) in dataList" @click="headerChange(index)">
+                    <router-link :class="{JMLink:item.isJMLink, JMActive:item.isJMActive}" :to="item.dataPageName" replace>{{item.title}}</router-link>
+                </li>
             </ul>
             <!--登陆-->
             <ul class="JMUserMenu" v-cloak>
                 <li class="JMItem" v-show="test"><router-link class="JMLink JM20C7BE" :to="{ name: 'works'}">[ gansiqiu ]</router-link></li>
                 <li class="JMItem" v-show="test"><router-link class="JMLink" :to="{ name: 'logout'}">退出</router-link></li>
-                <li class="JMItem" v-show="!test"><router-link class="JMLink JMIconUser" :to="{ name: 'logout'}"></router-link></li>
+                <li class="JMItem" v-show="!test"><router-link class="JMLink JMIconUser" :to="{ name: 'login'}"></router-link></li>
             </ul>
         </div>
     </div>
     <router-view/>
-    <div id="JMFooter">&copy;康乃馨养老产业集团</div>
+    <div id="JMFooter">&copy;湖南省科学技术厅</div>
   </div>
 </template>
 
@@ -37,7 +39,7 @@ export default {
   name: 'App',
   data(){
     return{
-      test:true,
+      test:false,
       timeData:"100",
       indexFlag:0,
       dataList:[
@@ -45,19 +47,18 @@ export default {
         {isJMLink:true, isJMActive:false, dataPageName:"news", title:'新闻', replace:false},
         {isJMLink:true, isJMActive:false, dataPageName:"rule", title:"章程", replace:false},
         {isJMLink:true, isJMActive:false, dataPageName:"judge", title:"评委", replace:false}
-        // {isJMLink:true, isJMActive:false, dataPageName:"production", title:"作品", replace:false}
       ]
     }
   },
 	methods:{
 		headerChange(n){
-				this.dataList[this.indexFlag].isJMActive = false;
+			this.dataList[this.indexFlag].isJMActive = false;
 		    this.dataList[n].isJMActive = true;
 		    this.indexFlag=n;
 		}
 	},
 	created: function () {
-	  this.$router.push('/home')
+	  this.$router.push('/home');
 	}
 }
 </script>
@@ -79,7 +80,6 @@ body{
     padding: 0px;
     font-size: 14px;
     font-family: "Arail","Microsoft YaHei","Heiti";
-    max-width: 1280px;
     padding-top:160px;
     display: flex;
     min-height: 83vh;
@@ -89,7 +89,7 @@ body{
  * 			header
  * ***********************/
 .JMHeader{
-	  position: absolute;
+	 position: absolute;
     top:0;
     left: 0;
     right:0;
@@ -108,14 +108,13 @@ body{
  */
 .JMLogo{
   text-align: center;
-	width: 200px;
-	height: 160px;
+	width: 120px;
+	height: 120px;
   max-width: 50%;
   display: inline-block;
   position: absolute;
   top:10px;
   left: 20px;
-  border: solid 1px black;
 }
 .JMLogo img{
     max-height:100%;

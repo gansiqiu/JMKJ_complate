@@ -1,7 +1,7 @@
 <template>
   <div class="JMRule">
     <ul class="JMRuleTip" id="JMRuleTip">
-      <li class="JMItem" v-for="(item, index) in itemList"><a :class="{ JMLink: item.isJMLink, JMActive:item.isJMActive }" @click="change(index)" :href="item.href"><img style="width:40px;height:40px;position:relative;display:inline-block;margin-right:20px;margin-bottom:-15px;" src="../assets/iconUser.png">{{item.title}}</a></li>
+      <li class="JMItem" v-for="(item, index) in itemList"><a :class="{ JMLink: item.isJMLink, JMActive:item.isJMActive }" @click="change(index)" :href="item.href"><img style="width:40px;height:40px;position:relative;display:inline-block;margin-right:20px;margin-bottom:-15px;" src="../assets/flower.png">{{item.title}}</a></li>
 		</ul>
 
 		<div class="JMRuleDetail">
