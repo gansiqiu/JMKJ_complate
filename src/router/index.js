@@ -7,7 +7,7 @@ import JMJudge from '@/components/JMJudge'
 import JMProduction from '@/components/JMProduction'
 import JMRule from '@/components/JMRule'
 import JMLogin from '@/components/JMLogin'
-
+import JMRuleDetail from '@/components/JMNewsDetial'
 
 Vue.use(Router)
 
@@ -46,7 +46,13 @@ export default new Router({
     {
       path: '/rule',
       name: 'rule',
-      component: JMRule
+      component: JMRule,
+      children:[
+          {
+              path:'/rule/ruleDetial',
+              component:JMRuleDetail
+          }
+      ]
     },
     {
       path: '/login',

@@ -10,6 +10,25 @@ body {
     margin: 160px auto;
     background: rgb(255, 255, 255);
 }
+
+h3 {
+    color: #ffdf00;
+    font-weight: normal;
+    font-size: 24px;
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+a {
+    text-decoration: none;
+    color: #A7A9AC;
+}
 .numberListContainer {
     width: 100%;
     background: #f7f8f8;
@@ -29,6 +48,12 @@ body {
     position: relative;
     top: 5px;
 }
+.rollNumberList li:hover{
+    color: #ffdf00;
+}
+.rollNumberList li.active {
+    color: #ffdf00;
+}
 .scheduleTip {
     display: inline-block;
     font-weight: normal;
@@ -41,25 +66,6 @@ body {
     line-height: 88px;
     height: 100%;
     background: #f7f8f8;
-}
-.rollNumberList li.active {
-    color: #ffdf00;
-    background: url(../assets/flower.png) no-repeat left bottom;
-}
-
-h3 {
-    color: #ffdf00;
-    font-weight: normal;
-    font-size: 24px;
-    display: block;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-}
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
 }
 .newsList li {
     height: 48px;
@@ -76,54 +82,35 @@ li {
     display: inline-block;
     overflow: hidden;
 }
-a {
-    text-decoration: none;
-    color: #A7A9AC;
+.newsList a:hover{
+        color: #ffdf00
 }
 </style>
 
 <template>
     <div class="JMHome" >
-        <swiper :options="swiperOption" ref="mySwiper" style="width:80%;height:400px;">
-            <!-- slides -->
+        <swiper :options="swiperOption" ref="mySwiper" style="width:100%;height:400px;">
              <swiper-slide  style="width:80%;min-height:400px;background:black;">
-                 <img src="../assets/index1.jpeg" alt="" style="width:100%;height:400px;">
+                 <img src="../assets/scrollImg1.png" alt="" style="width:100%;height:400px;">
              </swiper-slide>
              <swiper-slide style="width:80%;min-height:300px;background:red;">
-                 <img src="../assets/index2.jpeg" alt="" style="width:100%;height:400px;">
+                 <img src="../assets/scrollImg2.png" alt="" style="width:100%;height:400px;">
              </swiper-slide>
              <swiper-slide style="width:80%;min-height:300px;background:blue;">
-                 <img src="../assets/index3.jpeg" alt="" style="width:100%;height:400px;">
+                 <img src="../assets/scrollImg3.png" alt="" style="width:100%;height:400px;">
              </swiper-slide>
-             <!-- Optional controls -->
+             <swiper-slide style="width:80%;min-height:300px;background:blue;">
+                 <img src="../assets/scrollImg4.png" alt="" style="width:100%;height:400px;">
+             </swiper-slide>
+             <swiper-slide style="width:80%;min-height:300px;background:blue;">
+                 <img src="../assets/scrollImg5.png" alt="" style="width:100%;height:400px;">
+             </swiper-slide>
         </swiper>
-
-        <div class="swiper-pagination"  slot="pagination"></div>
-        <!-- <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div> -->
-        <div class="swiper-scrollbar"   slot="scrollbar"></div>
-
         <div class="numberListContainer">
             <ul id="rollNumberList" class="rollNumberList">
-                <li num="1">
-                    <span>设计发现</span>
-                    <p class="date">3.10-4.30</p>
-                </li>
-                <li num="2">
-                    <span>作品征集</span>
-                    <p class="date">5.10-7.7</p>
-                </li>
-                <li num="3">
-                    <span>创新设计优秀奖评审</span>
-                    <p class="date">7.10-8.12</p>
-                </li>
-                <li num="4">
-                    <span>孵化项目评审及工作营</span>
-                    <p class="date">8.20-9.20</p>
-                </li>
-                <li num="5">
-                    <span>终评与成果推广</span>
-                    <p class="date">10.8-10.10</p>
+                <li v-for="(item, index) in processList" @click="change(index)" :class="{active: item.isJMActive}">
+                    <span>{{item.title}}</span>
+                    <p class="date">{{item.timeDate}}</p>
                 </li>
             </ul>
             <h2 class="scheduleTip">2014芙蓉杯日程安排</h2>
@@ -132,49 +119,8 @@ a {
         <div class="content newsContainer">
             <h3 class="newsTitle">新闻</h3>
             <ul id="newsList" class="newsList">
-
-
-
-                <li class="hidden">
-                    <a title="转|国际工业设计协会ICSID关于第四届“芙蓉杯”国际工业设计创新大赛作品征集" href="http://www.lotusprize.com/2014/archives/754">
-                        2014-05-26                            &nbsp;&nbsp;&nbsp;
-                        转|国际工业设计协会ICSID关于第四届“芙蓉杯”国际工业设计创新大赛作品征集</a>
-                </li>
-
-                <li class="hidden">
-                    <a title="湖南日报：范石钟——第四届“芙蓉杯”大赛奖杯设计进行时" href="http://www.lotusprize.com/2014/archives/739">
-                        2014-05-23                            &nbsp;&nbsp;&nbsp;
-                        湖南日报：范石钟——第四届“芙蓉杯”大赛奖杯设计进行时</a>
-                </li>
-
-                <li class="hidden">
-                    <a title="转|国际艺术设计联盟（Cumulus）关于第四届“芙蓉杯”国际工业设计创新大赛作品征集" href="http://www.lotusprize.com/2014/archives/735">
-                        2014-05-23                            &nbsp;&nbsp;&nbsp;
-                        转|国际艺术设计联盟（Cumulus）关于第四届“芙蓉杯”国际工业设计创新大赛作品征集</a>
-                </li>
-
-                <li class="hidden">
-                    <a title="融合，“芙蓉杯”集结国际设计创客推动“创新湖南”！" href="http://www.lotusprize.com/2014/archives/350">
-                        2014-04-11                            &nbsp;&nbsp;&nbsp;
-                        融合，“芙蓉杯”集结国际设计创客推动“创新湖南”！</a>
-                </li>
-
-                <li class="hidden">
-                    <a title="天利湘绣：化茧成“蛾”" href="http://www.lotusprize.com/2014/archives/312">
-                        2014-04-10                            &nbsp;&nbsp;&nbsp;
-                        天利湘绣：化茧成“蛾”</a>
-                </li>
-
-                <li class="hidden">
-                    <a title="2014第四届“芙蓉杯”国际工业设计创新大赛宣传片" href="http://www.lotusprize.com/2014/archives/258">
-                        2014-04-04                            &nbsp;&nbsp;&nbsp;
-                        2014第四届“芙蓉杯”国际工业设计创新大赛宣传片</a>
-                </li>
-
-                <li class="hidden">
-                    <a title="工业设计对话互联网创客，2014第四届“芙蓉杯”国际工业设计创新大赛正式启动" href="http://www.lotusprize.com/2014/archives/218">
-                        2014-03-29                            &nbsp;&nbsp;&nbsp;
-                        工业设计对话互联网创客，2014第四届“芙蓉杯”国际工业设计创新大赛正式启动</a>
+                <li v-for="item in newsList">
+                    <a title="转|国际工业设计协会ICSID关于第四届“芙蓉杯”国际工业设计创新大赛作品征集" href="http://www.lotusprize.com/2014/archives/754">{{item.timeData}}&nbsp;&nbsp;&nbsp;{{item.title}}</a>
                 </li>
             </ul>
         </div>
@@ -187,20 +133,25 @@ export default {
  name: 'JMHome',
  data() {
    return {
-     swiperOption: {
+        processList:[
+            {title:"设计发现", timeDate:"3.10-4.30", isJMActive:false},
+            {title:"作品征集", timeDate:"5.10-7.7", isJMActive:false},
+            {title:"创新设计优秀奖评审", timeDate:"7.10-8.12", isJMActive:false},
+            {title:"孵化项目评审及工作营", timeDate:"8.20-9.20", isJMActive:false},
+            {title:"终评与成果推广", timeDate:"10.8-10.10", isJMActive:false}
+        ],
+        newsList:[
+            {title:"转|国际工业设计协会ICSID关于第四届“芙蓉杯”国际工业设计创新大赛作品征集", timeData:"2014-05-26"},
+            {title:"湖南日报：范石钟——第四届“芙蓉杯”大赛奖杯设计进行时", timeData:"2014-05-23"},
+            {title:"转|国际艺术设计联盟（Cumulus）关于第四届“芙蓉杯”国际工业设计创新大赛作品征集", timeData:"2014-05-23"}
+        ],
+        activeFlag:0,
+        swiperOption: {
            notNextTick: true,
-           autoplay: 300,
-           // direction : 'vertical',
            effect:"coverflow",
            grabCursor : true,
            setWrapperSize :true,
            autoHeight: true,
-           // paginationType:"bullets",
-           pagination : '.swiper-pagination',
-           paginationClickable :true,
-           prevButton:'.swiper-button-prev',
-           nextButton:'.swiper-button-next',
-           scrollbar:'.swiper-scrollbar',
            observeParents:true,
             }
         }
@@ -214,8 +165,16 @@ export default {
              return this.$refs.mySwiper.swiper
            }
      },
-     mounted() {
+    mounted() {
         console.log('mounted');
-     }
+    },
+    methods:{
+        change(index){
+            this.processList[this.activeFlag].isJMActive = false;
+            this.swiper.slideToLoop(index, 1000, false);
+            this.processList[index].isJMActive = true;
+            this.activeFlag = index;
+        }
+    }
 }
 </script>

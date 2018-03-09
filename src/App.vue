@@ -3,7 +3,7 @@
     <div class="JMHeader">
         <div class="JMLogo">
           <router-link :to="{ name: 'home'}">
-              <img src="./assets/flower.png" alt="">
+              <img src="./assets/scrollImg1.png" alt="">
           </router-link>
         </div>
         <div class="JMNoticeBoard">
@@ -44,7 +44,7 @@ export default {
       indexFlag:0,
       dataList:[
         {isJMLink:true, isJMActive:true, dataPageName:"home", title:'首页', replace:true},
-        {isJMLink:true, isJMActive:false, dataPageName:"news", title:'新闻', replace:false},
+        {isJMLink:true, isJMActive:false, dataPageName:"news", title:'选题', replace:false},
         {isJMLink:true, isJMActive:false, dataPageName:"rule", title:"章程", replace:false},
         {isJMLink:true, isJMActive:false, dataPageName:"judge", title:"评委", replace:false}
       ]
@@ -260,7 +260,7 @@ body{
   background-size:36%;
 }
 .JMIconUser{
-	background: url(./assets/iconUser.png)center center no-repeat;
+	background: url(./assets/scrollImg1.png)center center no-repeat;
   background-size: 100%;
 }
 
