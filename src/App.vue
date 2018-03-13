@@ -23,8 +23,8 @@
             </ul>
             <!--登陆-->
             <ul class="JMUserMenu" v-cloak>
-                <li class="JMItem" v-show="test"><router-link class="JMLink JM20C7BE" :to="{ name: 'works'}">[ gansiqiu ]</router-link></li>
-                <li class="JMItem" v-show="test"><router-link class="JMLink" :to="{ name: 'logout'}">退出</router-link></li>
+                <!-- <li class="JMItem" v-show="test"><router-link class="JMLink JM20C7BE" :to="{ name: 'works'}">[ gansiqiu ]</router-link></li>
+                <li class="JMItem" v-show="test"><router-link class="JMLink" :to="{ name: 'logout'}">退出</router-link></li> -->
                 <li class="JMItem" v-show="!test"><router-link class="JMLink JMIconUser" :to="{ name: 'login'}"></router-link></li>
             </ul>
         </div>
@@ -43,10 +43,10 @@ export default {
       timeData:"100",
       indexFlag:0,
       dataList:[
-        {isJMLink:true, isJMActive:true, dataPageName:"home", title:'首页', replace:true},
-        {isJMLink:true, isJMActive:false, dataPageName:"news", title:'选题', replace:false},
-        {isJMLink:true, isJMActive:false, dataPageName:"rule", title:"章程", replace:false},
-        {isJMLink:true, isJMActive:false, dataPageName:"judge", title:"评委", replace:false}
+        {isJMLink:true, isJMActive:true, dataPageName:"../home", title:'首页', replace:true},
+        {isJMLink:true, isJMActive:false, dataPageName:"../news", title:'选题', replace:false},
+        {isJMLink:true, isJMActive:false, dataPageName:"../rule", title:"章程", replace:false},
+        {isJMLink:true, isJMActive:false, dataPageName:"../judge", title:"评委", replace:false}
       ]
     }
   },
@@ -54,7 +54,8 @@ export default {
 		headerChange(n){
 			this.dataList[this.indexFlag].isJMActive = false;
 		    this.dataList[n].isJMActive = true;
-		    this.indexFlag=n;
+		    this.indexFlag = n;
+
 		}
 	},
 	created: function () {

@@ -5,9 +5,13 @@ import App from './App'
 import router from './router'
 
 
+
+// 轮播器模块
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.use(VueAwesomeSwiper)
 import 'swiper/dist/css/swiper.css'
+
+
 
 Vue.config.productionTip = false
 

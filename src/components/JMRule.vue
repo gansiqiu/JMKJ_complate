@@ -7,7 +7,7 @@
           </a>
       </li>
     </ul>
-    <div class="" style="width:60%;height:1000px;background:gray;">
+    <div class="JMRuleContent">
         <router-view/>
     </div>
   </div>
@@ -15,29 +15,40 @@
 
 <script>
 export default {
-  name:"JMRule",
-  data(){
-    return{
-      flag:0,
-      itemList:[
-        {isJMLink:true, isJMActive:true, title:"大赛介绍", href:"#JMSection1"},
-        {isJMLink:true, isJMActive:false, title:"大赛目的", href:"#JMSection2"},
-        {isJMLink:true, isJMActive:false, title:"大赛流程", href:"#JMSection3"},
-        {isJMLink:true, isJMActive:false, title:"作品征集", href:"#JMSection4"},
-        {isJMLink:true, isJMActive:false, title:"奖项设置", href:"#JMSection5"},
-        {isJMLink:true, isJMActive:false, title:"评选评审", href:"#JMSection6"},
-        {isJMLink:true, isJMActive:false, title:"承诺、保证与权利约定", href:"#JMSection7"}
-      ]
+      name:"JMRule",
+      data(){
+        return{
+          flag:0,
+          itemList:[
+            {isJMLink:true, isJMActive:true, title:"大赛简介"},
+            {isJMLink:true, isJMActive:false, title:"大赛主题"},
+            {isJMLink:true, isJMActive:false, title:"参赛类别"},
+            {isJMLink:true, isJMActive:false, title:"本届大赛特点"},
+            {isJMLink:true, isJMActive:false, title:"大赛组织"},
+            {isJMLink:true, isJMActive:false, title:"赛制日程"},
+            {isJMLink:true, isJMActive:false, title:"奖项设置"},
+            {isJMLink:true, isJMActive:false, title:"联系方式"}
+          ]
+        }
+      },
+    methods:{
+        change(n){
+          this.itemList[this.flag].isJMActive = false;
+          this.itemList[n].isJMActive = true;
+          this.flag=n;
+          this.urlBox = this.$route.path;
+          console.log(n);
+          this.$router.push({
+              path: "../ruleDetail/"+n
+          });
+        }
+    },
+    created(){
+      this.$router.push({
+          path: "../ruleDetail/"+0
+      });
     }
-  },
-  methods:{
-    change(n){
-      this.itemList[this.flag].isJMActive = false;
-      this.itemList[n].isJMActive = true;
-      this.flag=n;
-      this.$router.push({path: "../rule/ruleDetial"});
-    }
-  }
+
 }
 </script>
 
@@ -73,14 +84,18 @@ img{
     display: block;
     border: none;
 }
-
+.JMRule{
+    max-width: 1280px;
+    margin: 0 auto;
+}
 /*右侧锚点*/
 .JMRuleTip{
     position: fixed;
-    right: 10%;
-    top:180px;
-    /* border-left:1px solid #6d6d6d; */
+    left: 25%;
+    top: 180px;
+    /* border-left: 1px solid #6d6d6d; */
     padding: 30px 0px;
+    text-align: right;
 }
 
 .JMRuleTip .JMItem{
@@ -96,10 +111,10 @@ img{
     color: #6d6d6d;
 }
 .JMRuleTip .JMItem .JMLink.JMActive{
-    color: #e9608d;
+    color: #FFDF00;
 }
 .JMRuleTip .JMItem .JMLink.JMActive:before{
-    border:1px solid #e9608d;
+    border:1px solid #FFDF00;
 }
 
 /*正文文本*/
@@ -156,5 +171,11 @@ img{
 .JMRuleDetail #JMSection6,
 .JMRuleDetail #JMSection8{
 	background: #F4F4F4;
+}
+.JMRuleContent{
+    width: 50%;
+margin-left: 30%;
+margin-top: 60px;
+min-height: 755px;
 }
 </style>
