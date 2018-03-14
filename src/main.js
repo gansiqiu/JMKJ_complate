@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 
 
+// import "../static/js/validate"
+
 
 // 轮播器模块
 import VueAwesomeSwiper from 'vue-awesome-swiper'
@@ -12,6 +14,7 @@ Vue.use(VueAwesomeSwiper)
 import 'swiper/dist/css/swiper.css'
 
 
+// Vue.use(VeeValidate);
 
 Vue.config.productionTip = false
 

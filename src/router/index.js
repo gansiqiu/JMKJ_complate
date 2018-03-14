@@ -21,9 +21,7 @@ import JMRuleDetail7 from '@/components/JMRuleDetail7'
 // login
 import JMLogin from '@/components/JMLogin'
 
-
-Vue.use(VeeValidate)
-
+Vue.use(VeeValidate);
 Vue.use(Router)
 
 export default new Router({

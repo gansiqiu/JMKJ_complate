@@ -65,7 +65,6 @@ a {
     top: 0px;
     line-height: 88px;
     height: 100%;
-    background: #f7f8f8;
 }
 .newsList li {
     height: 48px;
